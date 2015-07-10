@@ -12,3 +12,6 @@ Everything else in the import wizard should be left at its default value.
 Next run CreateClientAndServerCerts.bat.
 
 Next open RegisterServerCert.bat and follow the instructions in it before running it.
+
+The client enforces TLS1.2.  Depending on your OS TLS1.2 may not be enabled.
+EnableTLS12Windows7.reg will add the necessary keys to your registry to enable TLS1.1 and TLS1.2
