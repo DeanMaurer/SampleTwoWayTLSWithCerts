@@ -28,9 +28,8 @@ namespace WCFTLSHost
 
             using (var host = new ServiceHost(typeof(HelloWorldService), baseAddress))
             {
-                var binding = new WSHttpBinding(SecurityMode.TransportWithMessageCredential);
+                var binding = new WSHttpBinding(SecurityMode.Transport);
                 binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Certificate;
-                binding.Security.Message.ClientCredentialType = MessageCredentialType.Certificate;
                 
                 host.Credentials.ServiceCertificate.SetCertificate(StoreLocation.LocalMachine, StoreName.My, X509FindType.FindBySubjectName, "localhost");
                 host.Credentials.ClientCertificate.Authentication.RevocationMode = X509RevocationMode.NoCheck;

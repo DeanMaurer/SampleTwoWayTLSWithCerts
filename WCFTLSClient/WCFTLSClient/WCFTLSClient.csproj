@@ -55,13 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Service References\TestService\HelloWorldService.wsdl" />
-    <None Include="Service References\TestService\mex.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\TestService\mex1.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -76,6 +69,13 @@
     <None Include="Service References\TestService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\TestService\HelloWorldService.wsdl" />
+    <None Include="Service References\TestService\mex.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TestService\mex1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\TestService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
