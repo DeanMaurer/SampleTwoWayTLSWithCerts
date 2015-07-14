@@ -13,9 +13,18 @@ Next run CreateClientAndServerCerts.bat.
 
 Next open RegisterServerCert.bat and follow the instructions in it before running it.
 
-The client enforces TLS1.2.  Depending on your OS TLS1.2 may not be enabled.
-EnableTLS12Windows7.reg will add the necessary keys to your registry to enable TLS1.1 and TLS1.2.
-You'll have to reboot your machine before the registry changes will take effect.
-You may also experience a bug where you have more trusted root certs than WCF can handle.
-EnableTLS12Windows7.reg also updated your registry so that your server won't send the list
-of trusted root certs to the client anymore.
+EnableTLSq2Windows7.reg does two things:
+a)	It enables TLS1.2, which is disabled by default on Windows 7.
+b)	It stops the server from attempting to send a full list of the trusted root certificates to the client.
+	Most Windows 7 machines have more trusted root certificates than WCF can send, which causes the list to be truncated.
+	Which causes the TLS authentication to fail.
+A reboot is required for the registry updates to take effect.
+
+
+The client can use any certificate that chains to a cert in your server's trusted root store.
+This sample app doesn't go into detail on how to restrict the acceptable trusted root certs for the server.
+But, briefly, you need makeCTL.exe.  Using it you can create a Certificate Trust List, that includes only the certs you
+want your server to accept.  Import the CTL into the Intermediate Certificate Authority folder for your local computer using MMC.
+Then, instead of executing RegisterServerCert.bat, use the below netsh command template:
+
+netsh http add sslcert ipport=0.0.0.0:44355 certhash=EnterYourThumbprintHere appid={a0327398-4069-4d2d-83c0-a0d5e6cc71b5} sslctlidentifier=NameOfTheCTLYouCreated sslctlstorename=CA

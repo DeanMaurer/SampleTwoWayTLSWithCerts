@@ -18,6 +18,8 @@ namespace WCFTLSClient
 
             Console.WriteLine(testService.SayHello("World"));
             Console.Read();
+
+            testService.Close();
         }
     }
 }
